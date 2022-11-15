@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API課題</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+
+    <h1> Twitter </h1>
+    <input type="text" id="title">
+    <button id="btn">検索</button>
+    <div id="output"></div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+
+        import json
+            from requests_oauthlib import OAuth1Session
+
+
+
+        // 取得した認証キーを設定
+        CONSUMER_KEY = "6RqYRIGgs2ATwVOEU1tw5zJFa"
+        CONSUMER_SECRET = "WhWcxSMEwbnHlzMJEbbYMUKdUJjJBQayV46EIi274oPpGP1q80"
+        ACCESS_TOKEN = "1583318499199315969-0yQPlD3krIubeYUdPriV7HgmC39Uk0"
+        ACCESS_SECRET = "8UlXYkHBsj5PP11fm7MbE1DFs5J9ZFlbipGBvj5AJFxBC"
+
+        twitter = OAuth1Session(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_SECRET)
+
+        // API用のURLを設定（●にはデベロッパー管理画面のDev environment labelを入力）
+        url = "https://api.twitter.com/1.1/tweets/search/30day/●.json"
+
+        #paramsに検索ワードや件数、日付などを入力
+        params = {
+            'query': 'Twitter API', #検索したいワード
+            "maxResults" : "100"}　#取得件数
+
+        #上記で設定したパラメーターをget関数を使い指定URLから取得
+        res = twitter.get(url, params = params)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $("#btn").on("click", function () {
+            const title = $("#title").val("");
+
+
+            // リクエストを送るurlを準備
+            const url = 'https://www.googleapis.com/books/v1/volumes?q=intitle:javascript';
+
+            // リクエストを送る
+
+            var Twitter = require('twitter');
+
+            var client = new Twitter({
+                consumer_key: '6RqYRIGgs2ATwVOEU1tw5zJFa',
+                consumer_secret: 'WhWcxSMEwbnHlzMJEbbYMUKdUJjJBQayV46EIi274oPpGP1q80',
+                access_token_key: '1583318499199315969-0yQPlD3krIubeYUdPriV7HgmC39Uk0',
+                access_token_secret: '8UlXYkHBsj5PP11fm7MbE1DFs5J9ZFlbipGBvj5AJFxBC'
+            });
+
+            var params = { screen_name: 'nodejs' };
+            client.get('statuses/user_timeline', params, function (error, tweets, response) {
+                if (!error) {
+                    console.log(tweets);
+                }
+            });
+
+            client.post('statuses/update', { status: 'ツイートも出来るかな？' }, function (error, tweet, response) {
+                if (!error) {
+                    console.log(tweet);
+                } else {
+                    console.log('error');
+                }
+            });
+
+
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

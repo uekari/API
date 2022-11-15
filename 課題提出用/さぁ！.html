@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- 表示場所 -->
+    <h1>movie</h1>
+    <input type="text" id="title">
+    <button id="btn">はいよ</button>
+
+    <div id="output"></div>
+
+
+    <!-- js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+
+        axios
+            .get("https://api.themoviedb.org/3/movie/550?api_key=af224ec1282df7f97fcdecabe78c99ad")
+
+            .then(function (Response) {
+                console.log(Response);
+            })
+            .then(data => {
+                //取得したJSONデータの処理
+                console.log(data);
+            })
+            .catch(error => {
+                //エラー発生時の処理
+                console.log('error');
+            })
+
+        $("#output").text();
+
+    </script>
+
+</body>
+
+</html>
